@@ -10,9 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cron": "^2.1.0",
     "dotenv": "^16.0.2",
-    "twit": "^2.2.11"
+    "twitter-api-v2": "^1.12.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

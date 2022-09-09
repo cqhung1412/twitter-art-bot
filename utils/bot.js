@@ -1,5 +1,5 @@
 require("dotenv").config();
-const Twit = require("twit");
+const { TwitterApi } = require("twitter-api-v2");
 
 const {
   TWITTER_API_KEY,
@@ -9,23 +9,20 @@ const {
 } = process.env;
 
 // Twit client init
-const client = new Twit({
-  consumer_key: TWITTER_API_KEY,
-  consumer_secret: TWITTER_API_SECRET,
-  access_token: TWITTER_ACCESS_TOKEN,
-  access_token_secret: TWITTER_ACCESS_TOKEN_SECRET,
+const client = new TwitterApi({
+  appKey: TWITTER_API_KEY,
+  appSecret: TWITTER_API_SECRET,
+  accessToken: TWITTER_ACCESS_TOKEN,
+  accessSecret: TWITTER_ACCESS_TOKEN_SECRET,
 });
 
 /**
  * Post Tweet Function
  */
 const postTweet = (message) => {
-  return client
-    .post("statues/update", {
-      status: message,
-    })
+  return client.v1.tweet(message)
     .then((res) => {
-      console.log("Tweet successfully.", res);
+      console.log("Tweet successfully.", message);
     })
     .catch((err) => {
       console.log("Tweet failed.", err);
