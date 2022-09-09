@@ -2,6 +2,9 @@ name: Tweet art on a schedule
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - master
   schedule:
     - cron: "0 0 * * *" # Runs at 7am on Asia/Ho_Chi_Minh
 

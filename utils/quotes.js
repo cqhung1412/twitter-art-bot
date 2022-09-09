@@ -1,5 +1,8 @@
 const quotes = function () {
-  this.QUOTES = ["Testing auto bot", "TeStiNg AutO bOt"];
+  this.QUOTES = [
+    "a painting of a fox sitting in a field at sunrise in the style of Claude Monet",
+    "TeStiNg AutO bOt",
+  ];
 };
 
 function getQuotes() {
