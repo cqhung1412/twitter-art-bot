@@ -20,25 +20,18 @@ const client = new TwitterApi({
 
 const postArt = async () => {
   const prompt = getQuotes();
-  console.info("Got prompt:", prompt)
+  console.info("Got prompt:", prompt);
 
   const images = await getImages(prompt);
-  console.log(`Got ${images.length} images`)
+  console.log(`Got ${images.length} images`);
   const promises = [];
   images.forEach((image) => {
-    promises.push(
-      client.v1.uploadMedia(image)
-    );
+    promises.push(client.v1.uploadMedia(image, { mimeType: "image/jpeg" }));
   });
   const mediaIds = await Promise.all(promises);
-  return client.v1
-    .tweet(prompt, { media_ids: mediaIds })
-    .then(() => {
-      console.log("Tweet successfully.", prompt);
-    })
-    .catch((err) => {
-      console.log("Tweet failed.", err.response?.data || err.response || err);
-    });
+  return client.v1.tweet(prompt, { media_ids: mediaIds }).then(() => {
+    console.log("Tweet successfully.", prompt);
+  });
 };
 
 module.exports = { postArt };
