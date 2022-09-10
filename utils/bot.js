@@ -1,5 +1,7 @@
 require("dotenv").config();
 const { TwitterApi } = require("twitter-api-v2");
+const { getImages } = require("./craiyon");
+const { getQuotes } = require("./quotes");
 
 const {
   TWITTER_API_KEY,
@@ -16,17 +18,24 @@ const client = new TwitterApi({
   accessSecret: TWITTER_ACCESS_TOKEN_SECRET,
 });
 
-/**
- * Post Tweet Function
- */
-const postTweet = (message) => {
-  return client.v1.tweet(message)
-    .then((res) => {
-      console.log("Tweet successfully.", message);
+const postArt = async () => {
+  const prompt = getQuotes();
+  const base64Images = await getImages(prompt);
+  const promises = [];
+  base64Images.forEach((image) => {
+    promises.push(
+      client.v1.uploadMedia(Buffer.from(image, "base64"), { type: "jpg" })
+    );
+  });
+  const mediaIds = await Promise.all(promises);
+  return client.v1
+    .tweet(prompt, { media_ids: mediaIds })
+    .then(() => {
+      console.log("Tweet successfully.", prompt);
     })
     .catch((err) => {
-      console.log("Tweet failed.", err);
+      console.log("Tweet failed.", err.response?.data);
     });
 };
 
-module.exports = { postTweet };
+module.exports = { postTweet, postArt };

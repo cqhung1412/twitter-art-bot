@@ -1,4 +1,3 @@
-const { postTweet } = require("./utils/bot");
-const { getQuotes } = require("./utils/quotes");
+const { postArt } = require("./utils/bot");
 
-postTweet(getQuotes());
+postArt()
