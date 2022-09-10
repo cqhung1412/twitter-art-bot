@@ -24,13 +24,14 @@ const postArt = async () => {
 
   const images = await getImages(prompt);
   console.log(`Got ${images.length} images`);
+
   const promises = [];
   images.forEach((image) => {
     promises.push(client.v1.uploadMedia(image, { mimeType: "image/jpeg" }));
   });
   const mediaIds = await Promise.all(promises);
   return client.v1.tweet(prompt, { media_ids: mediaIds }).then(() => {
-    console.log("Tweet successfully.", prompt);
+    console.log("Tweet successfully:", prompt);
   });
 };
 

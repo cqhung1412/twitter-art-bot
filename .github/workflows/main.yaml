@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - master
-#   schedule:
-#     - cron: "0 0 * * *" # Runs at 7am on Asia/Ho_Chi_Minh
+  schedule:
+    - cron: "0 0/4 * * *" # Runs at every 4th hour from 0 through 23 UTC
 
 jobs:
   build:
