@@ -1,4 +1,4 @@
-name: Tweet art on a schedule
+name: Tweet art
 
 on:
   workflow_dispatch:
