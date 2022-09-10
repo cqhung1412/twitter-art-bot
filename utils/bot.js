@@ -38,4 +38,4 @@ const postArt = async () => {
     });
 };
 
-module.exports = { postTweet, postArt };
+module.exports = { postArt };
