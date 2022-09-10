@@ -20,11 +20,14 @@ const client = new TwitterApi({
 
 const postArt = async () => {
   const prompt = getQuotes();
-  const base64Images = await getImages(prompt);
+  console.info("Got prompt:", prompt)
+
+  const images = await getImages(prompt);
+  console.log(`Got ${images.length} images`)
   const promises = [];
-  base64Images.forEach((image) => {
+  images.forEach((image) => {
     promises.push(
-      client.v1.uploadMedia(Buffer.from(image, "base64"), { type: "jpg" })
+      client.v1.uploadMedia(image)
     );
   });
   const mediaIds = await Promise.all(promises);
@@ -34,7 +37,7 @@ const postArt = async () => {
       console.log("Tweet successfully.", prompt);
     })
     .catch((err) => {
-      console.log("Tweet failed.", err.response?.data);
+      console.log("Tweet failed.", err.response?.data || err.response || err);
     });
 };
 

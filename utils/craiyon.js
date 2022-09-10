@@ -7,12 +7,13 @@ const getImages = async (prompt) => {
   const result = await craiyon.generate({
     prompt,
   });
-  let base64Images = [];
+  
+  let bufferImages = [];
   result.images.forEach((image) => {
-    base64Images.push(image.asBase64());
+    bufferImages.push(image.asBuffer());
   });
 
-  return base64Images;
+  return bufferImages;
 };
 
 module.exports = { getImages };
