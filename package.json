@@ -1,17 +1,14 @@
 {
-  "name": "@cqhung1412/twitter-art-bot",
+  "name": "twitter-art-bot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "publishConfig": {
-    "@cqhung1412:registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "jest"
   },
-  "author": "",
+  "author": "cqhung1412",
   "license": "ISC",
   "dependencies": {
     "craiyon": "^1.0.0",
