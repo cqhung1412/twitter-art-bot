@@ -19,7 +19,7 @@ const client = new TwitterApi({
 });
 
 const postArt = async () => {
-  const prompt = await getPrompt();
+  const prompt = getPrompt();
   console.info("Got prompt:", prompt);
 
   const images = await getImages(prompt);
