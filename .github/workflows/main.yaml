@@ -2,9 +2,9 @@ name: Tweet art
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
+#   push:
+#     branches:
+#       - master
   schedule:
     - cron: "0 0/1 * * *" # Runs at every 1 hour from 0 through 23 UTC
 
