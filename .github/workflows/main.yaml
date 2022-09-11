@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '16.x'
       - name: Install dependencies
-        run: npm install
+        run: npm install @cqhung1412/twitter-art-bot
       - name: Run tweet
         run: npm start
         env:
