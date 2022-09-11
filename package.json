@@ -1,8 +1,11 @@
 {
-  "name": "twitter-art-bot",
+  "name": "@cqhung1412/twitter-art-bot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "publishConfig": {
+    "@cqhung1412:registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
