@@ -1,6 +1,7 @@
 const content = [
+  "#humanoid# #human-mod#",
   "#humanoid# #human-mod# in #setting#",
-  "#humanoid# #human-mod# in #setting#",
+  "#holdable# #obj-mod#",
   "#holdable# #obj-mod# in #setting#",
 ];
 
