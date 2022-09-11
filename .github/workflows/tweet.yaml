@@ -2,22 +2,19 @@ name: Tweet art
 
 on:
   workflow_dispatch:
-#   push:
-#     branches:
-#       - master
   schedule:
     - cron: "0 0/1 * * *" # Runs at every 1 hour from 0 through 23 UTC
 
 jobs:
-  build:
+  tweet:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Download artifact
+        uses: actions/download-artifact@v3
         with:
-          node-version: '16.x'
-      - name: Install dependencies
-        run: npm install
+          name: artifact
+      - name: Test artifact download
+        run: ls -R
       - name: Run tweet
         run: npm start
         env:
@@ -28,10 +25,10 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     if: always()
-    needs: build
+    needs: tweet
     steps:
       - name: Send a Notification
         uses: thechetantalwar/teams-notify@v2
         with:
           teams_webhook_url: ${{ secrets.TEAMS_HOOK }}
-          message: "Github Action Build Number ${{ github.run_number }} Completed for ${{ github.repository }} and the outcome is  ${{ needs.build.result }}."
+          message: "Github Actions tweet ${{ github.run_number }} completed for ${{ github.repository }} and the outcome is  ${{ needs.tweet.result }}."

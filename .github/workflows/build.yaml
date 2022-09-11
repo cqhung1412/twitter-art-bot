@@ -1,0 +1,40 @@
+name: Build artifact
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+      - name: Test functions
+        run: npm test
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+  notify:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: build
+    steps:
+      - name: Send a Notification
+        uses: thechetantalwar/teams-notify@v2
+        with:
+          teams_webhook_url: ${{ secrets.TEAMS_HOOK }}
+          message: "Github Actions build artifact #${{ github.run_number }} completed for ${{ github.repository }} and the outcome is  ${{ needs.build.result }}."
