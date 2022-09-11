@@ -31,4 +31,4 @@ jobs:
         uses: thechetantalwar/teams-notify@v2
         with:
           teams_webhook_url: ${{ secrets.TEAMS_HOOK }}
-          message: "Github Actions tweet ${{ github.run_number }} completed for ${{ github.repository }} and the outcome is  ${{ needs.tweet.result }}."
+          message: "Github Actions tweet art #${{ github.run_number }} completed for ${{ github.repository }} and the outcome is  ${{ needs.tweet.result }}."
