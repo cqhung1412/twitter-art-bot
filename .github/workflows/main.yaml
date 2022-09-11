@@ -6,7 +6,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "0 0/4 * * *" # Runs at every 4th hour from 0 through 23 UTC
+    - cron: "0 0/2 * * *" # Runs at every 2nd hour from 0 through 23 UTC
 
 jobs:
   build:
