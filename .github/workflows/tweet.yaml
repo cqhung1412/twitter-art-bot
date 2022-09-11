@@ -9,7 +9,7 @@ jobs:
   tweet:
     runs-on: ubuntu-latest
     container: 
-      image: ghcr.io/cqhung1412/twitter-art-bot
+      image: ghcr.io/cqhung1412/twitter-art-bot:master
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
