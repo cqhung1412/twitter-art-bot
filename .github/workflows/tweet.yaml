@@ -9,13 +9,12 @@ jobs:
   tweet:
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          workflow: build.yaml
-          name: artifact
-      - name: Test artifact download
-        run: ls -R
+          node-version: "16.x"
+      - name: Install dependencies
+        run: npm install
       - name: Run tweet
         run: npm start
         env:
