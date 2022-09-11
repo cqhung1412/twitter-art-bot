@@ -3,13 +3,13 @@ name: Tweet art
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0/1 * * *" # Runs at every 1 hour from 0 through 23 UTC
+    - cron: "0 * * * *" # Runs at every 1 hour from 0 through 23 UTC
 
 jobs:
   tweet:
     runs-on: ubuntu-latest
     container: 
-      image: ghcr.io/cqhung1412/twitter-art-bot
+      image: ghcr.io/cqhung1412/twitter-art-bot:latest
     steps:
       - uses: actions/checkout@v2
       - name: Run tweet
