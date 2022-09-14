@@ -31,7 +31,7 @@ const postArt = async () => {
   });
   const mediaIds = await Promise.all(promises);
   return client.v1
-    .tweet(`${prompt} #craiyon`, { media_ids: mediaIds })
+    .tweet(`${prompt} #craiyon #aiart #texttoimage`, { media_ids: mediaIds })
     .then(() => {
       console.log("Tweet successfully:", prompt);
     });
