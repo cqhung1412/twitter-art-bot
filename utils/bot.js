@@ -29,7 +29,7 @@ const postArt = async () => {
 
   const promises = [];
   images.forEach((image) => {
-    promises.push(client.v1.uploadMedia(image, { mimeType: "image/png" }));
+    promises.push(client.v1.uploadMedia(image, { mimeType: "image/jpeg" }));
   });
   const mediaIds = await Promise.all(promises);
   return client.v1
