@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { TwitterApi } = require("twitter-api-v2");
 const { getImages } = require("./craiyon");
+const { postImage } = require("./hotpot")
 const { getPrompt } = require("./prompt");
 
 const {
@@ -22,16 +23,17 @@ const postArt = async () => {
   const prompt = getPrompt();
   console.info("Got prompt:", prompt);
 
-  const images = await getImages(prompt);
+  // const images = await getImages(prompt);
+  const images = await postImage(prompt)
   console.log(`Got ${images.length} images`);
 
   const promises = [];
   images.forEach((image) => {
-    promises.push(client.v1.uploadMedia(image, { mimeType: "image/jpeg" }));
+    promises.push(client.v1.uploadMedia(image, { mimeType: "image/png" }));
   });
   const mediaIds = await Promise.all(promises);
   return client.v1
-    .tweet(`${prompt} #craiyon #aiart #texttoimage`, { media_ids: mediaIds })
+    .tweet(`${prompt} #hotpotai #stablediffusion #artwork #aiart #texttoimage`, { media_ids: mediaIds })
     .then(() => {
       console.log("Tweet successfully:", prompt);
     });

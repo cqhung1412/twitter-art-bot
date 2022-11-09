@@ -13,6 +13,8 @@
   "dependencies": {
     "craiyon": "^1.0.0",
     "dotenv": "^16.0.2",
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.6.7",
     "twitter-api-v2": "^1.12.5"
   },
   "devDependencies": {

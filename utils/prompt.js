@@ -108,8 +108,10 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function getPrompt() {
-  return capitalizeFirstLetter(resolve("#content#, #img-type##img-mod#"));
+function getPrompt(useStyle = false) {
+  let promptContent = "#content#"
+  if (useStyle) promptContent += ", #img-type##img-mod#"
+  return capitalizeFirstLetter(resolve(promptContent));
 }
 
 module.exports = { getPrompt };
