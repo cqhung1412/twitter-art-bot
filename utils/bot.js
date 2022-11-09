@@ -20,7 +20,7 @@ const client = new TwitterApi({
 });
 
 const postArt = async () => {
-  const prompt = getPrompt();
+  let prompt = getPrompt();
   console.info("Got prompt:", prompt);
 
   // const images = await getImages(prompt);
@@ -29,7 +29,7 @@ const postArt = async () => {
 
   const promises = [];
   images.forEach((image) => {
-    promises.push(client.v1.uploadMedia(image, { mimeType: "image/jpeg" }));
+    promises.push(client.v1.uploadMedia(image, { mimeType: "image/png" }));
   });
   // promises.push(client.v1.uploadMedia('test.png'))
   const mediaIds = await Promise.all(promises);

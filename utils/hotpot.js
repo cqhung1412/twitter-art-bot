@@ -18,7 +18,7 @@ const postImage = async (prompt) => {
       body: form,
       headers: authHeader,
     });
-    const imageBuffer = Buffer.from(await response.arrayBuffer(), "base64");
+    const imageBuffer = Buffer.from(await response.arrayBuffer(), 'base64');
     fs.writeFileSync(`test.png`, Buffer.concat([imageBuffer]), "binary");
     return [imageBuffer];
   } catch (error) {
