@@ -2,8 +2,8 @@ name: Tweet art
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * *" # Runs at 0 UTC
+#   schedule:
+#     - cron: "0 0 * * *" # Runs at 0 UTC
 
 jobs:
   tweet:
