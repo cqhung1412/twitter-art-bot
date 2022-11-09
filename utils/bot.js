@@ -28,9 +28,10 @@ const postArt = async () => {
   console.log(`Got ${images.length} images`);
 
   const promises = [];
-  images.forEach((image) => {
-    promises.push(client.v1.uploadMedia(image, { mimeType: "image/jpeg" }));
-  });
+  // images.forEach((image) => {
+  //   promises.push(client.v1.uploadMedia(image, { mimeType: "image/png" }));
+  // });
+  promises.push(client.v1.uploadMedia('test.png'))
   const mediaIds = await Promise.all(promises);
   return client.v1
     .tweet(`${prompt} #hotpotai #stablediffusion #artwork #aiart #texttoimage`, { media_ids: mediaIds })

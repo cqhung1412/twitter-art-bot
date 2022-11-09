@@ -1,7 +1,6 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
 const FormData = require("form-data");
-const { getPrompt } = require("./prompt");
 
 require("dotenv").config();
 
@@ -17,9 +16,10 @@ const postImage = async (prompt) => {
     const response = await fetch("https://api.hotpot.ai/make-art", {
       method: "POST",
       body: form,
-      headers: authHeader
+      headers: authHeader,
     });
     const imageBuffer = Buffer.from(await response.arrayBuffer());
+    fs.writeFileSync(`test.png`, Buffer.concat([imageBuffer]), "binary");
     return [imageBuffer];
   } catch (error) {
     console.log(error);
