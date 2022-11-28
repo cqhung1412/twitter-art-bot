@@ -33,7 +33,7 @@ const postArt = async () => {
     const mediaIds = await Promise.all(promises);
     return client.v1
       .tweet(
-        `${prompt} #stability.ai #stablediffusion #artwork #aiart #texttoimage`,
+        `${prompt} #stabilityai #stablediffusion #artwork #aiart #texttoimage`,
         {media_ids: mediaIds}
       )
       .then(() => {
