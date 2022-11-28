@@ -1,3 +1,4 @@
+import constants from '../constants/index.mjs';
 const {
   content,
   imageType,
@@ -26,78 +27,78 @@ const {
   wearableMod,
   footwear,
   material,
-} = require("../constants");
+} = constants;
 
 function getArrayByParam(param) {
   switch (param) {
-    case "#content#":
+    case '#content#':
       return content;
-    case "#img-type#":
+    case '#img-type#':
       return imageType;
-    case "#img-mod#":
+    case '#img-mod#':
       return imageMod;
-    case "#food#":
+    case '#food#':
       return food;
-    case "#color#":
+    case '#color#':
       return color;
-    case "#setting#":
+    case '#setting#':
       return settings;
-    case "#humanoid#":
+    case '#humanoid#':
       return humanoid;
-    case "#human-mod#":
+    case '#human-mod#':
       return humanMod;
-    case "#critter#":
+    case '#critter#':
       return critter;
-    case "#driveable#":
+    case '#driveable#':
       return driveable;
-    case "#rideable#":
+    case '#rideable#':
       return rideable;
-    case "#profession#":
+    case '#profession#':
       return profession;
-    case "#painter#":
+    case '#painter#':
       return painter;
-    case "#magazine#":
+    case '#magazine#':
       return magazine;
-    case "#show#":
+    case '#show#':
       return show;
-    case "#movie#":
+    case '#movie#':
       return movie;
-    case "#holdable#":
+    case '#holdable#':
       return holdable;
-    case "#obj-mod#":
+    case '#obj-mod#':
       return objectMod;
-    case "#fruit#":
+    case '#fruit#':
       return fruit;
-    case "#veggie#":
+    case '#veggie#':
       return veggie;
-    case "#drinkable#":
+    case '#drinkable#':
       return drinkable;
-    case "#plantable#":
+    case '#plantable#':
       return plantable;
-    case "#wearable#":
+    case '#wearable#':
       return wearable;
-    case "#playable#":
+    case '#playable#':
       return playable;
-    case "#wearable-mod#": // Usage: ___ hat.
+    case '#wearable-mod#': // Usage: ___ hat.
       return wearableMod;
-    case "#footwear#":
+    case '#footwear#':
       return footwear;
-    case "#material#": // Usage: made out of ___; covered in ___;
+    case '#material#': // Usage: made out of ___; covered in ___;
       return material;
   }
 }
 
 function getRandomFromArray(arr) {
-  let item = arr[Math.floor(Math.random() * arr.length)];
+  const item = arr[Math.floor(Math.random() * arr.length)];
   return item;
 }
 
 function resolve(template) {
   let ret = template;
-  let arr = template.match(/(#[a-z\-]*#)/gi); // arr is an array of all params in the template.
-  for (let item in arr) {
-    let options = getArrayByParam(arr[item]);
-    let input = resolve(getRandomFromArray(options)); // Recursive call to resolve embedded templates.
+  const arr = template.match(/(#[a-z-]*#)/gi); // arr is an array of all params in the template.
+  for (const item in arr) {
+    const options = getArrayByParam(arr[item]);
+    const input = resolve(getRandomFromArray(options)); // Recursive call to resolve embedded templates.
     // replace the param in the template.
     ret = ret.replace(arr[item], input);
   }
@@ -109,9 +110,9 @@ function capitalizeFirstLetter(string) {
 }
 
 function getPrompt(useStyle = false) {
-  let promptContent = "#content#"
-  if (useStyle) promptContent += ", #img-type##img-mod#"
+  let promptContent = '#content#';
+  if (useStyle) promptContent += ', #img-type##img-mod#';
   return capitalizeFirstLetter(resolve(promptContent));
 }
 
-module.exports = { getPrompt };
+export default {getPrompt};
