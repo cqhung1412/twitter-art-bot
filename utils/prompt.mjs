@@ -109,9 +109,9 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function getPrompt(useStyle = false) {
+function getPrompt() {
   let promptContent = '#content#';
-  if (useStyle) promptContent += ', #img-type##img-mod#';
+  if (Math.random() < 0.5) promptContent += ', #img-type##img-mod#';
   return capitalizeFirstLetter(resolve(promptContent));
 }
 
